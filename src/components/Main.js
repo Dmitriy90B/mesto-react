@@ -8,26 +8,27 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     const [userAvatar, setProfileAvatar] = React.useState("");
     const [cards, setCards] = React.useState([]);
 
-    function userInfo() {
-        api.getUserInfo()
-            .then((item) => {
-                setProfileName(item.name);
-                setProfileJob(item.about);
-                setProfileAvatar(item.avatar);
-            })
-            .catch((err) => console.log(`Ошибка: ${err}`));
-    }
-
-    function initialCards() {
-        api.getInitialCards()
-            .then((data) => {
-                setCards(data);
-            })
-            .catch((err) => console.log(`Ошибка: ${err}`));
-    }
+    React.useEffect(() => {
+        function userInfo() {
+            api.getUserInfo()
+                .then((item) => {
+                    setProfileName(item.name);
+                    setProfileJob(item.about);
+                    setProfileAvatar(item.avatar);
+                })
+                .catch((err) => console.log(`Ошибка: ${err}`));
+        }
+        userInfo();
+    }, []);
 
     React.useEffect(() => {
-        userInfo();
+        function initialCards() {
+            api.getInitialCards()
+                .then((data) => {
+                    setCards(data);
+                })
+                .catch((err) => console.log(`Ошибка: ${err}`));
+        }
         initialCards();
     }, []);
 
