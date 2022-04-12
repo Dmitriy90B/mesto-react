@@ -18,13 +18,13 @@ class Api {
     .then(res => this._getResponse(res));
   }
 
-  addCard(data) {   // добавить карточку (POST)
+  addCard({name, link}) {   // добавить карточку (POST)
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.heading,
-        link: data.link
+        name,
+        link
       })
     })
     .then(res => this._getResponse(res));
@@ -45,24 +45,24 @@ class Api {
     .then(res => this._getResponse(res));
   }
 
-  replaceUserInfo(data) {   // заменить данные пользователя (PATCH)
+  replaceUserInfo({name, about}) {   // заменить данные пользователя (PATCH)
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.job
+        name,
+        about
       })
     })
     .then(res => this._getResponse(res));
   }
 
-  replaceAvatar(data) { // заменить аватар (PATCH)
+  replaceAvatar({avatar}) { // заменить аватар (PATCH)
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar
+        avatar
       })
     })
     .then(res => this._getResponse(res));
