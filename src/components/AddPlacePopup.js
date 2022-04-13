@@ -41,6 +41,9 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 name="heading"
                 className="popup__input popup__input_profile_heading"
                 id="text-card"
+                minLength={2}
+                maxLength={30}
+                autoComplete="off"
                 placeholder="Название"
                 required
                 value={name}

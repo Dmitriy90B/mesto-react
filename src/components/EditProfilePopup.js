@@ -19,7 +19,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -44,9 +44,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
                 name="name"
                 className="popup__input"
                 id="name-card"
+                minLength={2}
+                maxLength={40}
+                autoComplete="off"
                 required
                 placeholder="Имя"
-                value={name}
+                value={name || ""}
                 onChange={handleNameChange}
             />
             <span id="name-card-error" className="error"></span>
@@ -55,9 +58,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
                 name="job"
                 className="popup__input"
                 id="job-card"
+                minLength={2}
+                maxLength={200}
+                autoComplete="off"
                 required
                 placeholder="О себе"
-                value={description}
+                value={description || ""}
                 onChange={handleJobChange}
             />
             <span id="job-card-error" className="error"></span>

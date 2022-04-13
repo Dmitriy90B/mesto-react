@@ -14,7 +14,7 @@ function App() {
     const [isAddPlacePopupOpen, setPopupAdd] = React.useState(false);
     const [isEditAvatarPopupOpen, setPopupAvatar] = React.useState(false);
     const [selectedCard, setPopupWithConfirmation] = React.useState(null);
-    const [currentUser, setCurrentUser] = React.useState([]);
+    const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
 
     const handleEditClick = () => {
@@ -90,7 +90,7 @@ function App() {
     const handleCardDelete = (card) => {
         api.deleteByTrash(card._id)
             .then(() => {
-                setCards(cards.filter((c) => c._id !== card._id));
+                setCards((cards) => cards.filter((c) => c._id !== card._id));
             })
             .catch((err) => console.log(`Ошибка при клике на корзину: ${err}`));
     };
